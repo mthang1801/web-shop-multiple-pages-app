@@ -1,0 +1,44 @@
+<%- include("../includes/header") %> 
+  <link rel="stylesheet" href="/css/button.styles.min.css">
+  <link rel="stylesheet" href="/css/form-input.styles.min.css">
+  <link rel="stylesheet" href="/css/product-actions-page.min.css">
+</head>
+<body>
+  <%- include("../includes/navigation") %>
+  <main class="product-actions-page">   
+    <div class="product-form">
+      <form>
+        <div class="form-title">
+          <h1 class="form-title">ADD PRODUCT</h1>
+          <span>Add more your product which you want to buy.</span>
+        </div>
+        <div class="form-group">
+          <input type="text" name="name" class="form-input" value="" required>
+          <label class="form-input-label">Name</label>
+        </div>
+        <div class="form-group">
+          <input type="text" name="subname" class="form-input" value="" required>
+          <label class="form-input-label">Subname</label>
+        </div>
+        <div class="form-group">
+          <input type="number" name="price" class="form-input" value="" required>
+          <label class="form-input-label">Price</label>
+        </div>      
+        <div class="form-group">
+          <input type="file" name="image" class="form-input" value="" required>        
+        </div>
+        <div class="form-group">
+          <input type="text" name="describe" class="form-input" value="" required>
+          <label class="form-input-label">Describe</label>
+        </div>
+        <div class="form-group text-center">
+          <button type="submit" class="btn dark">POST</button>
+        </div>
+      </form>
+    </div>
+    <div class="product-image">
+      <image src="/images-url/book.jpg" />
+    </div>
+  </main>
+<%- include("../includes/footer") %>
+

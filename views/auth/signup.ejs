@@ -1,0 +1,44 @@
+<%- include("../includes/header") %>
+  <link rel="stylesheet" href="/css/auth-page.min.css">
+  <link rel="stylesheet" href="/css/button.styles.min.css">
+  <link rel="stylesheet" href="/css/form-input.styles.min.css">
+</head>
+<body>
+  <%- include("../includes/navigation") %>
+  <main class="auth-page">
+    <form class="auth-form" method="POST"  action="/auth/signup" novalidate>
+      <div class="form-title">
+        <h1>SIGN UP</h1>
+        <span>Sign up with your email and password</span>
+      </div>
+      <div class="alert">
+        <div class="error"><%= error ? error : "" %></div>
+        <div class="success"></div>
+      </div>  
+        <div class="form-group">
+          <input type="text" name="name" class="form-input"  required>
+          <label class="form-input-label">Name</label>          
+        </div>      
+      <div class="form-group">        
+        <input type="email" class="form-input" name="email"  required/>
+        <label class="form-input-label">Email</label>
+      </div>
+      <div class="form-group">        
+        <input type="password" class="form-input" name="password"  required/>
+        <label class="form-input-label">Password</label>
+      </div>    
+      <div class="form-group">        
+        <input type="password" class="form-input" name="confirmPassword"  required/>
+        <label class="form-input-label">Confirm Password</label>
+      </div>      
+      <div class="form-group">
+        <button type="submit" class="btn dark">Sign Up</button>
+      </div>
+    </form>
+    <div class="auth-router">    
+      <div>You have already an account ? <a href="/auth/signin">Sign In</a></div>      
+      <div>You have forgot password ? <a href="javascript:void(0)">Reset Password</a></div>
+    </div>
+  </main>
+<%- include("../includes/footer") %>
+

@@ -1,0 +1,5 @@
+{
+  "MONGO_URI" : "mongodb://localhost:27017/web-shop",
+  "SESSION_SECRET" : "mvtmvtmvt",
+  "SALT" : 12
+}

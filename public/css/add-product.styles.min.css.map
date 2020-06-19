@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../sass/components/add-product.styles.scss"
+    ],
+    "names": [],
+    "file": "add-product.styles.min.css"
+}
