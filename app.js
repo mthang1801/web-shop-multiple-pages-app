@@ -10,7 +10,7 @@ const path = require("path");
 const authRouter = require("./routes/auth");
 const shopRouter = require("./routes/shop");
 const productsRouter = require("./routes/products");
-
+const User = require("./models/user");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -38,6 +38,25 @@ app.use(
   })
 );
 app.use(flash());
+
+app.use(async (req, res, next) => {
+  if (req.session.userId) {
+    return next();
+  }
+  try {
+    let user = await User.findById(req.session.userId);
+    req.user = user;
+    req.isAuthenticated = req.session.isAuthenticated;
+    next();
+  } catch (error) {
+    next();
+  }
+});
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isAuthenticated;
+  next();
+});
 
 app.use(shopRouter);
 app.use("/products", productsRouter);

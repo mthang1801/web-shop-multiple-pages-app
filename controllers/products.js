@@ -28,6 +28,6 @@ exports.postAddProduct = async (req, res, next) => {
 exports.getAddProduct = (req, res, next) => {
   return res.render("products/product-actions", {
     pageTitle: "Add Product",
-    path: "/add-product",
+    path: "/products/add-product",
   });
 };

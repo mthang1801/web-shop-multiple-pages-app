@@ -1,7 +1,8 @@
 @mixin shrinkLabel{
-  top : -13px ; 
-  left:  0 ; 
+  top : -13px !important; 
+  left:  0 !important; 
   font-size : .9em;  
+  color : blue;
   z-index: 1;
 }
 
@@ -23,11 +24,13 @@
     color : rgb(70, 70, 70);
     &:focus{
       border-bottom : 1px solid black;        
-    }
+    }    
     &:focus ~.form-input-label{             
       @include shrinkLabel();
-    }
+    }  
+    
   }
+ 
   input[type="password"]{
     letter-spacing: .2em;
   }
@@ -40,8 +43,12 @@
     position: absolute;
     top : 12px ; 
     left : 14px;
-    transition : .3s ease-out
+    transition : .3s ease-out;    
+    &.shrinkLabel{
+      @include shrinkLabel();
+    }
   }  
+
 }
 
 @media (min-width : 600px){  

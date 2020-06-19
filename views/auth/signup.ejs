@@ -12,8 +12,7 @@
         <span>Sign up with your email and password</span>
       </div>
       <div class="alert">
-        <div class="error"><%= error ? error : "" %></div>
-        <div class="success"></div>
+        <div class="error"><%= error ? error : "" %></div>        
       </div>  
         <div class="form-group">
           <input type="text" name="name" class="form-input"  required>
@@ -40,5 +39,6 @@
       <div>You have forgot password ? <a href="javascript:void(0)">Reset Password</a></div>
     </div>
   </main>
+  <script src="/js/auth/auth.js"></script>
 <%- include("../includes/footer") %>
 

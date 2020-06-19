@@ -16,4 +16,20 @@
       color : #424242;
     }
   }
+  &-link{
+    font-family: "Roboto Condensed" !important;
+    outline : none ; 
+    border : none  ;
+    background-color: transparent;        
+    font-size : 1em;
+    font-weight: 400;
+    
+    
+  }
+  &-navlink{
+    color : white !important;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
 }

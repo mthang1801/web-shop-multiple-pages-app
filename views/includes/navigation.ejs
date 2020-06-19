@@ -2,31 +2,39 @@
   <nav class="main-header__nav">
     <ul class="main-header__item-list">
       <li class="main-header__item">
-        <a class="" href="/">Home</a>
+        <a class="<%= path == '/' ? 'active' : '' %>" href="/">Home</a>
+      </li>
+      <% if(isAuthenticated) { %>
+      <li class="main-header__item">
+        <a class="<%= path == '/cart' ? 'active' : '' %>" href="/cart">Cart</a>
       </li>
       <li class="main-header__item">
-        <a class="" href="">Cart</a>
+        <a class="<%= path == '/order' ? 'active' : '' %>" href="/order">Order</a>
       </li>
       <li class="main-header__item">
-        <a class="" href="">Order</a>
+        <a class="<%= path == '/products/my-products' ? 'active' : '' %>" href="/products/my-products">My Products</a>
       </li>
       <li class="main-header__item">
-        <a class="" href="">My Products</a>
+        <a class="<%= path == '/products/add-product' ? 'active' : '' %>" href="/products/add-product">Add Product</a>
       </li>
-      <li class="main-header__item">
-        <a class="" href="/products/add-product">Add Product</a>
-      </li>
+      <%}%>
     </ul>
     <ul class="main-header__item-list">
+      <%if (!isAuthenticated) {%>
       <li class="main-header__item">
-        <a class="" href="/auth/signin">Login</a>
+        <a class="<%= path == '/auth/signin' ? 'active' : '' %>" href="/auth/signin">Login</a>
       </li>
       <li class="main-header__item"> 
-        <a class="" href="/auth/signup">Register</a>
+        <a class="<%= path == '/auth/signup' ? 'active' : '' %>" href="/auth/signup">Register</a>
       </li>
+      <%}else{%>
       <li class="main-header__item">
-        <a class="" href="">Logout</a>
+        <form action="/auth/signout" method="POST">
+          <button class="btn btn-link btn-navlink">Logout</button>
+        </form>
       </li>
+      <%}%>
     </ul>
   </nav>
+  <script src="/js/auth/auth.js"></script> 
 </header>

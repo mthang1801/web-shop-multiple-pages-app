@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/auth");
 const { check, body } = require("express-validator");
+const { isLogin, isLogout } = require("../middleware/auth");
 router.post(
   "/signup",
   [
@@ -22,8 +23,20 @@ router.post(
   authController.postSignUp
 );
 
-router.get("/signin", authController.getSignIn);
+router.get("/signin", isLogout, authController.getSignIn);
 
-router.get("/signup", authController.getSignUp);
+router.get("/signup", isLogout, authController.getSignUp);
+
+router.post("/signout", isLogin, authController.postSignOut);
+
+router.post(
+  "/signin",
+  isLogout,
+  [
+    check("email", "Email is not empty").notEmpty(),
+    check("password", "Password is not empty").notEmpty(),
+  ],
+  authController.postSignIn
+);
 
 module.exports = router;
