@@ -3,6 +3,11 @@ const router = express.Router();
 const authController = require("../controllers/auth");
 const { check, body } = require("express-validator");
 const { isLogin, isLogout } = require("../middleware/auth");
+const passport = require("passport");
+const initPassportLocal = require("../controllers/passport/local");
+
+initPassportLocal();
+
 router.post(
   "/signup",
   [
@@ -32,11 +37,11 @@ router.post("/signout", isLogin, authController.postSignOut);
 router.post(
   "/signin",
   isLogout,
-  [
-    check("email", "Email is not empty").notEmpty(),
-    check("password", "Password is not empty").notEmpty(),
-  ],
-  authController.postSignIn
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/auth/signin",
+    failureFlash: true,
+  })
 );
 
 module.exports = router;

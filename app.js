@@ -10,6 +10,7 @@ const path = require("path");
 const authRouter = require("./routes/auth");
 const shopRouter = require("./routes/shop");
 const productsRouter = require("./routes/products");
+const passport = require("passport");
 const User = require("./models/user");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,18 +36,25 @@ app.use(
     saveUninitialized: false,
     cookie: { secure: false, maxAge: 60 * 60 * 1000 },
     store: store,
+    unset: "destroy",
   })
 );
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(async (req, res, next) => {
-  if (req.session.userId) {
+  if (!req.user) {
     return next();
   }
   try {
-    let user = await User.findById(req.session.userId);
+    let user = await User.findById(req.user, { password: 0 });
+    if (!user) {
+      return next();
+    }
+
     req.user = user;
-    req.isAuthenticated = req.session.isAuthenticated;
     next();
   } catch (error) {
     next();
@@ -54,7 +62,8 @@ app.use(async (req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  res.locals.isAuthenticated = req.session.isAuthenticated;
+  console.log(!!req.user);
+  res.locals.isAuthenticated = !!req.user;
   next();
 });
 

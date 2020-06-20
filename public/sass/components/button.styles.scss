@@ -22,12 +22,11 @@
     border : none  ;
     background-color: transparent;        
     font-size : 1em;
-    font-weight: 400;
-    
-    
+    font-weight: 400;     
   }
   &-navlink{
     color : white !important;
+    text-transform: capitalize !important;   
     &:hover{
       text-decoration: underline;
     }
